@@ -189,10 +189,13 @@ app.post('/contact', urlencodedParser, async(req, res) => {
 })
 
 app.get('/:id/enquiry', async(req, res) => {
-
+try{
     let msg = await Call.findById(req.params.id);
     res.render('enquiry.ejs', { msg });
-
+}
+    catch(error){
+        console.log(error);
+    }
 
 
 })
