@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add post</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="row">
+        <h1 class="text-center">Edit Post</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/admin/<%=posts._id%>" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" id="title" name="title" value="<%=posts.title%>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="country">Country</label>
+                    <input class="form-control" type="text" id="country" name="country" value="<%=posts.country%>" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" required name="description" value="<%=posts.description%>"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image URl</label>
+                    <input type="url" class="form-control" id="image" name="imageUrl" value="<%=posts.imageUrl%>">
+                </div>
+                <div class="mb-3 text-center">
+                    <button class="btn btn-success">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
