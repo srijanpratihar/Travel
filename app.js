@@ -27,7 +27,8 @@ let Post = require('./models/post.model').Post;
 let User = require('./models/post.model').User;
 let Call = require('./models/post.model').call;
 let mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://srijan:abcd@cluster0.531lfxk.mongodb.net/?retryWrites=true&w=majority', {
+let url=process.env.url;
+mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -44,7 +45,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-            mongoUrl: 'mongodb+srv://srijan:abcd@cluster0.531lfxk.mongodb.net/?retryWrites=true&w=majority',
+            mongoUrl: process.env.url,
             collectionNmae: "sessions",
         })
         //cookie: { secure: true }
