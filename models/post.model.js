@@ -6,7 +6,23 @@ let postSchema = new Schema({
     description: String,
     text: String,
     country: String,
-    imageUrl: String
+    images: [{
+        url: String,
+        filename: String
+    }],
+    info: String,
+    price: Number,
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    }
 });
 
 let users = new Schema({
@@ -30,8 +46,15 @@ let Call = new Schema({
     message: String
 })
 
+
+let Callme = new Schema({
+    phone: Number
+})
+
 let Post = mongoose.model('Post', postSchema);
 let User = mongoose.model('user', users);
 let call = mongoose.model('call', Call);
+let callme = mongoose.model('callme', Callme);
 
-module.exports = { Post, User, call };
+
+module.exports = { Post, User, call, callme };

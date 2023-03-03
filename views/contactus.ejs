@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+
+<body style="background-image:url('/images/WhatsApp Image 2023-02-20 at 20.48.32.jpeg');background-size: 100% 200%; margin-bottom: 60px;">
+
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container" style="font-weight: bold; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                <a class="navbar-brand" href="#">India Tourism</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="/aboutus">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/contactus">Contact Us</a>
+                        </li>
+
+                        <% if (flag===false) {%>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/login">Admin Login</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/register">Admin Register</a>
+                            </li>
+                            <%}else{%>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/admin">Admin Page</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/logout">Log out</a>
+                                </li>
+
+                                <%} %>
+
+
+                    </ul>
+                    <% if (flag===false) {%>
+                        <form class="d-flex" action="/calls" method="post">
+                            <input class="form-control me-2" type="tel" placeholder="Phone number" aria-label="Phone number" name="phone">
+                            <button class="btn btn-outline-primary text-nowrap" type="submit">Call me</button>
+                        </form>
+                        <%}%>
+                </div>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <main>
+        <div class="container text-center">
+            <div>
+                <h2>Contact Info</h2>
+            </div>
+
+            <div style="font-style:italic; font-family:serif; font-size: larger;">
+
+                <h4>India Tourism</h4>
+                <p>Address: 309,B.B.GANGULY STREET, 1ST & 2ND FLOOR, KOLKATA,
+                </p>
+
+                <p>Pin:700136</p>
+
+                <p>Email:srijanpratihar19@gmail.com</p>
+
+                <p>Contact: 7477622722 / 9830039043 </p>
+
+            </div>
+        </div>
+    </main>
+
+
+
+
+    <footer class="navbar navbar-expand-lg navbar-light  mt-3" style="position: absolute;bottom: 0;width: 100%;height: 60px;">
+        <div class="container py-0">
+            <p class="copy mb-0">&copy;2023,All Rights Reserved</p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Contact us</button>
+        </div>
+    </footer>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action='/contact' method="post">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name">
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone number</label>
+                            <input type="tel" class="form-control" id="phone" name="phone">
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Enquiry</label>
+                            <textarea type="text" class="form-control" id="name" name="message"></textarea>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="/js/bootstrap.min.js"></script>
+
+</body>
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Travel</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container" style="font-weight: bold; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                <a class="navbar-brand" href="#">India Tourism</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="/aboutus">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/contactus">Contact Us</a>
+                        </li>
+
+                        <% if (flag===false) {%>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/login">Admin Login</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/register">Admin Register</a>
+                            </li>
+                            <%}else{%>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/admin">Admin Page</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/logout">Log out</a>
+                                </li>
+
+                                <%} %>
+
+
+                    </ul>
+                    <% if (flag===false) {%>
+                        <form class="d-flex" action="/calls" method="post">
+                            <input class="form-control me-2" type="tel" placeholder="Phone number" aria-label="Phone number" name="phone">
+                            <button class="btn btn-outline-primary text-nowrap" type="submit">Call me</button>
+                        </form>
+                        <%}%>
+                </div>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <main>
+
+        <div class="container shadow-lg py-3 px-5 mb-5 bg-body rounded">
+            <h1 class="text-center" style="font-family: sans-serif; font-style: italic;">
+                <%=posts.description%>
+            </h1>
+            <hr>
+
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <% posts.images.forEach((img, i) => {  %>
+                        <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+                            <img src="<%= img.url%>" class="d-block w-100" alt="" style="height:100vh">
+                        </div>
+                        <% }) %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+            </div>
+
+            <hr>
+
+            <p class="date fw-bold">
+
+                <%=posts.date.toString().substring(4, 16)%>
+
+            </p>
+
+            <div>
+                <p>
+                    <%=posts.info%>
+                </p>
+            </div>
+
+            <div id="map" style="height:400px;">
+
+
+
+            </div>
+        </div>
+    </main>
+    <script>
+        mapboxgl.accessToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v12', // style URL
+            center: [<%-posts.geometry.coordinates[0]%>, <%-posts.geometry.coordinates[1]%>], // starting position [lng, lat]
+            zoom: 8, // starting zoom
+        });
+
+        var marker = new mapboxgl.Marker().setLngLat([<%-posts.geometry.coordinates[0]%>, <%-posts.geometry.coordinates[1]%>]).addTo(map);
+    </script>
+    <script src="/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

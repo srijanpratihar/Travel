@@ -14,7 +14,7 @@
     <div class="row">
         <h1 class="text-center">New Post</h1>
         <div class="col-md-6 offset-md-3">
-            <form action="/admin" method="POST">
+            <form action="/admin" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="title">Title</label>
                     <input class="form-control" type="text" id="title" name="title" required>
@@ -29,8 +29,18 @@
                     <textarea class="form-control" type="text" id="description" required name="description"></textarea>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="image">Image URl</label>
-                    <input type="url" class="form-control" id="image" name="imageUrl">
+                    <label class="form-label" for="image">Image</label>
+                    <input type="file" class="form-control" id="image" name="image" multiple>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Information</label>
+                    <textarea class="form-control" type="text" id="info" required name="info"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="price">Price</label>
+                    <input class="form-control" type="number" id="price" name="price" required>
                 </div>
                 <div class="mb-3 text-center">
                     <button class="btn btn-success">Add Post</button>

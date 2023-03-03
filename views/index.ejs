@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 
-<body>
+<body style="background-image:url('/images/WhatsApp Image 2023-02-20 at 20.48.32.jpeg');background-size: 100% 200%; margin-bottom: 60px;">
 
     <header class="mb-5">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <div class="container" style="font-weight: bold; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
                 <a class="navbar-brand" href="#">Lets Travel</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -25,11 +25,11 @@
                             <a class="nav-link " aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="#">About Us</a>
+                            <a class="nav-link " aria-current="page" href="/aboutus">About Us</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Contact Us</a>
+                            <a class="nav-link" aria-current="page" href="/contactus">Contact Us</a>
                         </li>
 
                         <li class="nav-item">
@@ -41,10 +41,6 @@
                         </li>
 
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="tel" placeholder="Phone number" aria-label="Phone number">
-                        <button class="btn btn-outline-primary text-nowrap" type="submit">Call me</button>
-                    </form>
                 </div>
             </div>
         </nav>
@@ -59,8 +55,8 @@
             <div class="d-flex align-items-start">
                 <div class="nav flex-column nav-pills me-3 border rounded w-25 p-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link active" id="v-pills-articles-tab" data-bs-toggle="pill" data-bs-target="#v-pills-articles" type="button" role="tab" aria-controls="v-pills-articles" aria-selected="true">Articles</button>
-                    <button class="nav-link" id="v-pills-mails-tab" data-bs-toggle="pill" data-bs-target="#v-pills-mails" type="button" role="tab" aria-controls="v-pills-mails" aria-selected="false">Mails</button>
-                    <button class="nav-link" id="v-pills-request-tab" data-bs-toggle="pill" data-bs-target="#v-pills-request" type="button" role="tab" aria-controls="v-pills-request" aria-selected="false">Callback request</button>
+                    <button class="nav-link" id="v-pills-mails-tab" data-bs-toggle="pill" data-bs-target="#v-pills-mails" type="button" role="tab" aria-controls="v-pills-mails" aria-selected="false">CallBack Request</button>
+                    <button class="nav-link" id="v-pills-request-tab" data-bs-toggle="pill" data-bs-target="#v-pills-request" type="button" role="tab" aria-controls="v-pills-request" aria-selected="false">Enquiries</button>
 
                 </div>
                 <div class="tab-content border rounded w-75 p-3" id="v-pills-tabContent">
@@ -89,8 +85,29 @@
                                         <%}%>
                         </table>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-mails" role="tabpanel" aria-labelledby="v-pills-mails-tab">Mails content</div>
-                    <div class="tab-pane fade" id="v-pills-request" role="tabpanel" aria-labelledby="v-pills-request-tab"><table class="table table-striped">
+                    <div class="tab-pane fade" id="v-pills-mails" role="tabpanel" aria-labelledby="v-pills-mails-tab">
+<table class="table table-striped">
+
+
+<% let vvv=1%>
+                                <% for (let call of callme){%>
+                                    <tr>
+                                        <td>
+                                            <%=vvv%>
+                                        </td>
+                                        <td>
+                                            <%=call.phone%>
+                                        </td>
+                                        <td><a class="btn btn-link p-0 text-decoration-none" href="/delete/<%=call._id%>">X</button></td>
+                                    </tr>
+                                    <%vvv++%>
+                                        <%}%>
+                        </table>
+
+
+</div>
+                    <div class="tab-pane fade" id="v-pills-request" role="tabpanel" aria-labelledby="v-pills-request-tab">
+<table class="table table-striped">
                             <% let vv=1%>
                                 <% for (let call of calls){%>
                                     <tr>
@@ -110,7 +127,8 @@
                                     </tr>
                                     <%vv++%>
                                         <%}%>
-                        </table></div>
+                        </table>
+</div>
                 </div>
             </div>
         </div>

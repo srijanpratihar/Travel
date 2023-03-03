@@ -12,28 +12,54 @@
     <title>Registration Page</title>
 </head>
 
-<body style="background-image:url('/images/wallpaperflare.com_wallpaper.jpg');background-size: 100% 200%;">
+<body style="background-image:url('/images/WhatsApp Image 2023-02-20 at 20.48.32.jpeg');;background-size: 100% 200%;">
     <section>
         <div class=" container mt-5 pt-5 ">
             <div class="row ">
-                <div class="text-center">
-                    <h1>Register</h1>
-                </div>
-                <div class="col-12 col-sm-7 col-md-6 m-auto ">
-                    <div>
-                        <div class="card-body ">
-                            <form action="/register" method="post">
-                                <input type="text " name="username" class="form-control my-4 py-2 " placeholder="Username" required>
-                                <input type="email" name="email" class="form-control my-4 py-2" placeholder="email" required>
-                                <input type="password " name="password" class="form-control my-4 py-2 " placeholder="Password" required>
-                                <div class="text-center mt-3">
-                                    <button class="btn btn-warning" type="submit">Register</button>
-                                    <div class="mt-2">Already Have an account?<a href="/login" class="text-black">Login Now</a></div>
-                                </div>
-                            </form>
-                        </div>
+                <% if(success=='username'){%>
+                    <div class="alert alert-success">
+
+                        <strong>Username is already Taken!</strong>
+
                     </div>
-                </div>
+                    <%}%>
+
+                        <% if(success=='password'){%>
+                            <div class="alert alert-success">
+
+                                <strong>Invalid Password</strong>
+
+                            </div>
+                            <%}%>
+
+                                <% if(success=='email'){%>
+                                    <div class="alert alert-success">
+
+                                        <strong>Email is already registered!</strong>
+
+                                    </div>
+                                    <%}%>
+
+
+
+                                        <div class="text-center">
+                                            <h1>Register</h1>
+                                        </div>
+                                        <div class="col-12 col-sm-7 col-md-6 m-auto ">
+                                            <div>
+                                                <div class="card-body ">
+                                                    <form action="/register" method="post">
+                                                        <input type="text " name="username" class="form-control my-4 py-2 " placeholder="Username" required>
+                                                        <input type="email" name="email" class="form-control my-4 py-2" placeholder="email" required>
+                                                        <input type="password " name="password" class="form-control my-4 py-2 " placeholder="Password" required>
+                                                        <div class="text-center mt-3">
+                                                            <button class="btn btn-warning" type="submit">Register</button>
+                                                            <div class="mt-2">Already Have an account?<a href="/login" class="text-black">Login Now</a></div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
             </div>
         </div>
     </section>

@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Let's Travel</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/b2eeb7bc31.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body style="background-image:url('/images/WhatsApp Image 2023-02-20 at 20.48.32.jpeg');background-size: 100% 200%;">
 
     <header>
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <div class="container" style="font-weight: bold; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
                 <a class="navbar-brand" href="#">India Tourism</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -22,14 +22,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="#">Home</a>
+                            <a class="nav-link " aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="#">About Us</a>
+                            <a class="nav-link " aria-current="page" href="/aboutus">About Us</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Contact Us</a>
+                            <a class="nav-link" aria-current="page" href="/contactus">Contact Us</a>
                         </li>
 
                         <% if (flag===false) {%>
@@ -54,10 +54,12 @@
 
 
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="tel" placeholder="Phone number" aria-label="Phone number">
-                        <button class="btn btn-outline-primary text-nowrap" type="submit">Call me</button>
-                    </form>
+                    <% if (flag===false) {%>
+                        <form class="d-flex" action="/calls" method="post">
+                            <input class="form-control me-2" type="tel" placeholder="Phone number" aria-label="Phone number" name="phone">
+                            <button class="btn btn-outline-primary text-nowrap" type="submit">Call me</button>
+                        </form>
+                        <%}%>
                 </div>
             </div>
         </nav>
@@ -68,55 +70,62 @@
 
     <main>
         <div class="container">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://img.veenaworld.com/wp-content/uploads/2022/06/Hotels-in-Pahalgam-A-Perfect-Getaway-In-The-Lap-of-Nature-scaled-e1656352336838.jpg" class="image-fluid d-block w-100 " style="height:80vh" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Pahalgam</h5>
-                            <p>Kashmir,India</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://res.cloudinary.com/thrillophilia/image/upload/c_fill,f_auto,fl_progressive.strip_profile,g_auto,h_600,q_auto,w_auto/v1/filestore/oq0ze7kcnahol7qnqgpp2do58qpe_1488201003_3d32873056326c73c529169a0102192df27fa6e8-tc-img-preview.jpg" class="h-20 image-fluid d-block w-100"
-                            style="height:80vh" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Jollyboy Island</h5>
-                            <p>Andaman And Nicobar Islands,India</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://static.toiimg.com/photo/msid-93474335,width-96,height-65.cms" class="h-30 image-fluid d-block w-100" alt="..." style="height:80vh">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Jaipur</h5>
-                            <p>Rajasthan,India</p>
-                        </div>
-                    </div>
+            <% if(success=='mustbeloggedin'){%>
+                <div class="alert alert-success">
 
-                    <div class="carousel-item">
-                        <img src="https://images.thrillophilia.com/image/upload/s--AC7EInAl--/c_fill,g_center,h_642,q_auto,w_1280/f_auto,fl_strip_profile/v1/images/photos/000/013/736/original/1626253725_shutterstock_1840637584.jpeg.jpg" class="h-20 image-fluid d-block w-100"
-                            style="height:80vh" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Nubra Valley</h5>
-                            <p>Ladakh,India</p>
-                        </div>
-                    </div>
+                    <strong>User must be logged in!</strong>
+
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <%}%>
+                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://img.veenaworld.com/wp-content/uploads/2022/06/Hotels-in-Pahalgam-A-Perfect-Getaway-In-The-Lap-of-Nature-scaled-e1656352336838.jpg" class="image-fluid d-block w-100 " style="height:80vh" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Pahalgam</h5>
+                                    <p>Kashmir,India</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://res.cloudinary.com/thrillophilia/image/upload/c_fill,f_auto,fl_progressive.strip_profile,g_auto,h_600,q_auto,w_auto/v1/filestore/oq0ze7kcnahol7qnqgpp2do58qpe_1488201003_3d32873056326c73c529169a0102192df27fa6e8-tc-img-preview.jpg" class="h-20 image-fluid d-block w-100"
+                                    style="height:80vh" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Jollyboy Island</h5>
+                                    <p>Andaman And Nicobar Islands,India</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://static.toiimg.com/photo/msid-93474335,width-96,height-65.cms" class="h-30 image-fluid d-block w-100" alt="..." style="height:80vh">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Jaipur</h5>
+                                    <p>Rajasthan,India</p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <img src="https://images.thrillophilia.com/image/upload/s--AC7EInAl--/c_fill,g_center,h_642,q_auto,w_1280/f_auto,fl_strip_profile/v1/images/photos/000/013/736/original/1626253725_shutterstock_1840637584.jpeg.jpg" class="h-20 image-fluid d-block w-100"
+                                    style="height:80vh" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Nubra Valley</h5>
+                                    <p>Ladakh,India</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
-            </div>
+                    </div>
 
         </div>
 
@@ -125,17 +134,43 @@
             <div class="row row-cols-3 g-4">
                 <%for(let post of posts){%>
                     <div class="col">
-                        <div class="card ">
-                            <img src="<%=post.imageUrl%>" class="card-img-top" alt="Image 1" style="height:50vh">
-                            <div class="card-body bg-light">
-                                <h5 class="card-title">
-                                    <%=post.title%>
-                                </h5>
-                                <p class="card-text">
-                                    <%=post.description%>
-                                </p>
-                                <a class="btn btn-link p-0 text-decoration-none" href="/<%=post._id%>/details">Details</a>
-                            </div>
+                        <div class="card rounded">
+                            <%if(post.images.length!=0){%>
+                                <img src="<%=post.images[0].url%>" class="card-img-top" alt="Image 1" style="height:50vh">
+                                <%}%>
+                                    <div class="card-body bg-light">
+                                        <h5 class="card-title">
+                                            <%=post.title%>
+                                        </h5>
+                                        <p class="card-text" style="font-weight:300; font-size: large;color: red;">
+                                            <%=post.description%>
+                                        </p>
+                                        <div>
+
+                                            <i class="fas fa-plane p-2"></i>
+                                            <i class="fas fa-hotel p-2"></i>
+                                            <i class="fas fa-car p-2"></i>
+                                            <i class="fas fa-person-hiking p-2"></i>
+
+
+
+
+                                        </div>
+
+
+
+
+
+                                        <a class="btn btn-link p-0 text-decoration-none" style="font-weight: bold;" href="/<%=post._id%>/details">Explore</a>
+
+                                        <div style="padding-top:30px;float:right;display: inline;">
+                                            <i class="fa-sharp fa-solid fa-indian-rupee-sign" style="font-size:15px;font-weight: bold;"><%=post.price%>/Person</i>
+
+
+                                        </div>
+
+                                    </div>
+
                         </div>
                     </div>
                     <%}%>
@@ -148,8 +183,8 @@
     </main>
 
 
-    <footer class="navbar navbar-expand-lg navbar-light bg-light mt-3">
-        <div class="container py-3">
+    <footer class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
             <p class="copy mb-0">&copy;2023,All Rights Reserved</p>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Contact us
