@@ -258,7 +258,7 @@ app.post('/admin', upload.array('image'), urlencodedParser, async(req, res) => {
 })
 
 app.post('/admin/:id', upload.array('image'), urlencodedParser, async(req, res) => {
-    // console.log(req.body);
+     console.log(req.body);
     try {
 
         let id = req.params.id;
