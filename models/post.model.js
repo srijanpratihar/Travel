@@ -11,18 +11,8 @@ let postSchema = new Schema({
         filename: String
     }],
     info: String,
-    price: Number,
-    geometry: {
-        type: {
-            type: String,
-            enum: ['Point'],
-            required: true
-        },
-        coordinates: {
-            type: [Number],
-            required: true
-        }
-    }
+    price: Number
+
 });
 
 let users = new Schema({

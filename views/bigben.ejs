@@ -8,8 +8,6 @@
     <title>Let's Travel</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
 
 </head>
 
@@ -111,24 +109,13 @@
                 </p>
             </div>
 
-            <div id="map" style="height:400px;">
+            <a target="_blank" href="https://maps.google.com/?q=<%=posts.title %>">Click to view on map</a>
 
 
-
-            </div>
+        </div>
         </div>
     </main>
-    <script>
-        mapboxgl.accessToken = '<%-pk.eyJ1Ijoic3JpamFuMiIsImEiOiJjbGVzbDQ3cWIxN2ZoM3JydjMzaWt3bXhoIn0.N3jrZBaG3TjjbPL80K7_1w%>';
-        const map = new mapboxgl.Map({
-            container: 'map', // container ID
-            style: 'mapbox://styles/mapbox/streets-v12', // style URL
-            center: [<%-posts.geometry.coordinates[0]%>, <%-posts.geometry.coordinates[1]%>], // starting position [lng, lat]
-            zoom: 8, // starting zoom
-        });
 
-        var marker = new mapboxgl.Marker().setLngLat([<%-posts.geometry.coordinates[0]%>, <%-posts.geometry.coordinates[1]%>]).addTo(map);
-    </script>
     <script src="/js/bootstrap.min.js"></script>
 
 </body>

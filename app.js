@@ -27,9 +27,6 @@ let Post = require('./models/post.model').Post;
 let User = require('./models/post.model').User;
 let Call = require('./models/post.model').call;
 let mongoose = require('mongoose');
-const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
-const mapboxtoken = 'pk.eyJ1Ijoic3JpamFuMiIsImEiOiJjbGVzbDQ3cWIxN2ZoM3JydjMzaWt3bXhoIn0.N3jrZBaG3TjjbPL80K7_1w';
-const geocoder = mbxGeocoding({ accessToken: mapboxtoken });
 mongoose.connect('mongodb+srv://srijan:abcd@cluster0.531lfxk.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -237,10 +234,7 @@ app.get('/addpost', async(req, res) => {
 
 app.post('/admin', upload.array('image'), urlencodedParser, async(req, res) => {
     try {
-        const geoData = await geocoder.forwardGeocode({
-            query: req.body.title,
-            limit: 1
-        }).send();
+
 
         //res.send(req.files);
         let newpost = new Post(req.body);
@@ -248,7 +242,7 @@ app.post('/admin', upload.array('image'), urlencodedParser, async(req, res) => {
             newpost.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
         }
 
-        newpost.geometry = geoData.body.features[0].geometry;
+
         newpost.date = new Date();
         await newpost.save();
         //res.send(newpost);
@@ -265,10 +259,7 @@ app.post('/admin', upload.array('image'), urlencodedParser, async(req, res) => {
 app.post('/admin/:id', upload.array('image'), urlencodedParser, async(req, res) => {
     // console.log(req.body);
     try {
-        const geoData = await geocoder.forwardGeocode({
-            query: req.body.title,
-            limit: 1
-        }).send();
+
         let id = req.params.id;
         const post = await Post.findByIdAndUpdate(id, req.body);
         if (req.files.length > 0) {
