@@ -28,7 +28,7 @@ let User = require('./models/post.model').User;
 let Call = require('./models/post.model').call;
 let mongoose = require('mongoose');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
-const mapboxtoken = process.MAPBOX_TOKEN;
+const mapboxtoken = 'pk.eyJ1Ijoic3JpamFuMiIsImEiOiJjbGRvMHM2MnMwZW9jM29xcnVsNXBnNDJsIn0.1_A6YyNSYvwetDimMI1OjA';
 const geocoder = mbxGeocoding({ accessToken: mapboxtoken });
 mongoose.connect('mongodb+srv://srijan:abcd@cluster0.531lfxk.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
