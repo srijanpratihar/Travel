@@ -11,8 +11,10 @@ let postSchema = new Schema({
         filename: String
     }],
     info: String,
-    price: Number
-
+    price: Number,
+    itiniery: [{
+        type: String
+    }]
 });
 
 let users = new Schema({

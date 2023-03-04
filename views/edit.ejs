@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 
-<body>
+<body style="background-image:url('/images/WhatsApp Image 2023-02-20 at 20.48.32.jpeg');background-size: 100% 200%;font-style: italic; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
 
-    <div class="row">
-        <h1 class="text-center">Edit Post</h1>
-        <div class="col-md-6 offset-md-3">
-            <form action="/admin/<%=posts._id%>" method="POST" enctype="multipart/form-data">
+    <div class="row " style="font-style: italic; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">
+        <h1 class="text-center ">Edit Post</h1>
+        <div class="col-md-6 offset-md-3 ">
+            <form action="/admin/<%=posts._id%>" method="POST" enctype="multipart/form-data" style="font-style: italic; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
                 <div class="mb-3">
                     <label class="form-label" for="title">Title</label>
                     <input class="form-control" type="text" id="title" name="title" value="<%=posts.title%>" required>
@@ -40,8 +40,67 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="price">Price</label>
-                    <input class="form-control" type="number" id="price" name="price" required>
+                    <input class="form-control" type="number" id="price" name="price" required value="<%=posts.price%>">
                 </div>
+
+
+
+                <div id="fg" class="mb-3" style="font-style: italic; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                    <h4>Add Travel Itiniery</h4>
+                    <% for(let i=0;i < posts.itiniery.length;i++) { %>
+
+                        <% let temp="itiniery".concat((i+1).toString());%>
+                            <div class="mb-3" style="padding-bottom: 10px;">
+                                <label class="form-label" for="description">Day <%=i+1%></label>
+                                <textarea class="form-control" type="text" id="info" required name=<%=temp%>><%=posts.itiniery[i]%></textarea>
+                            </div>
+                            <%}%>
+
+                </div>
+
+                <button class="btn btn-success" type="button" onclick="addmore()">Add Another day</button>
+
+                <script defer>
+                    let v = <%= posts.itiniery.length+1 %>;
+
+                    function addmore() {
+
+
+                        var d = document.createElement("div");
+                        d.setAttribute("class", "mb-3");
+
+
+                        var l = document.createElement("label");
+                        l.setAttribute("class", "form-label");
+                        l.setAttribute("for", "description");
+                        let temp = "Day";
+                        let temp2 = v.toString();
+                        l.innerText = temp.concat(" " + temp2);
+
+                        let r = "itiniery".concat(temp2);
+
+
+                        var text = document.createElement("textarea");
+                        text.setAttribute("class", "form-control");
+                        text.setAttribute("type", "text");
+                        text.setAttribute("name", r);
+
+                        d.appendChild(l);
+                        d.appendChild(text);
+
+                        document.getElementById('fg').append(d);
+
+                        v++;
+                    }
+                </script>
+
+
+
+
+
+
+
+
 
                 <div class="mb-3 text-center">
                     <button class="btn btn-success">Save Changes</button>

@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 
-<body>
+<body style="background-image:url('/images/WhatsApp Image 2023-02-20 at 20.48.32.jpeg');background-size: 100% 200%;font-style: italic; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
 
     <div class="row">
         <h1 class="text-center">New Post</h1>
         <div class="col-md-6 offset-md-3">
-            <form action="/admin" method="POST" enctype="multipart/form-data">
+            <form action="/admin" method="POST" enctype="multipart/form-data" style="font-style: italic; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
                 <div class="mb-3">
                     <label class="form-label" for="title">Title</label>
                     <input class="form-control" type="text" id="title" name="title" required>
@@ -42,6 +42,53 @@
                     <label class="form-label" for="price">Price</label>
                     <input class="form-control" type="number" id="price" name="price" required>
                 </div>
+
+                <div id="fg" class="mb-3">
+                    <h4>Add Travel Itiniery</h4>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Day 1</label>
+                        <textarea class="form-control" type="text" id="info" required name="itiniery1"></textarea>
+                    </div>
+
+                </div>
+
+                <button class="btn btn-success" type="button" onclick="addmore()">Add Another day</button>
+
+                <script defer>
+                    let v = 2;
+
+                    function addmore() {
+
+
+                        var d = document.createElement("div");
+                        d.setAttribute("class", "mb-3");
+
+
+                        var l = document.createElement("label");
+                        l.setAttribute("class", "form-label");
+                        l.setAttribute("for", "description");
+                        let temp = "Day";
+                        let temp2 = v.toString();
+                        l.innerText = temp.concat(" " + temp2);
+
+                        let r = "itiniery".concat(temp2);
+
+
+                        var text = document.createElement("textarea");
+                        text.setAttribute("class", "form-control");
+                        text.setAttribute("type", "text");
+                        text.setAttribute("name", r);
+
+                        d.appendChild(l);
+                        d.appendChild(text);
+
+                        document.getElementById('fg').append(d);
+
+                        v++;
+                    }
+                </script>
+
+
                 <div class="mb-3 text-center">
                     <button class="btn btn-success">Add Post</button>
                 </div>
@@ -50,5 +97,7 @@
     </div>
 
 </body>
+
+
 
 </html>

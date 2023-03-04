@@ -27,8 +27,7 @@ let Post = require('./models/post.model').Post;
 let User = require('./models/post.model').User;
 let Call = require('./models/post.model').call;
 let mongoose = require('mongoose');
-let url=process.env.url;
-mongoose.connect(url, {
+mongoose.connect('mongodb+srv://srijan:abcd@cluster0.531lfxk.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -45,7 +44,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-            mongoUrl: process.env.url,
+            mongoUrl: 'mongodb+srv://srijan:abcd@cluster0.531lfxk.mongodb.net/?retryWrites=true&w=majority',
             collectionNmae: "sessions",
         })
         //cookie: { secure: true }
@@ -242,6 +241,40 @@ app.post('/admin', upload.array('image'), urlencodedParser, async(req, res) => {
         if (req.files.length > 0) {
             newpost.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
         }
+        let v = 1;
+
+        let temp = "itiniery";
+        temp.concat();
+        console.log();
+
+        while (req.body["itiniery".concat(v.toString())] != null) {
+            newpost.itiniery.push(req.body["itiniery".concat(v.toString())]);
+            v++;
+        }
+
+
+        // let obj = {}
+        // for (let i = 1; i < 3; i++) {
+
+        //     let temp1 = temp.concat(i.toString());
+        //     obj[temp1] = temp1;
+
+        // }
+        // let keys = Object.keys(req.body);
+        // console.log(keys);
+        // let i = 0;
+        // for (let key of keys) {
+        //     if (i > 4) {
+        //         newpost[itiniery].push
+        //     }
+        //     i++;
+
+
+        // }
+
+
+
+
 
 
         newpost.date = new Date();
@@ -258,7 +291,7 @@ app.post('/admin', upload.array('image'), urlencodedParser, async(req, res) => {
 })
 
 app.post('/admin/:id', upload.array('image'), urlencodedParser, async(req, res) => {
-     console.log(req.body);
+    console.log(req.body);
     try {
 
         let id = req.params.id;
@@ -266,6 +299,16 @@ app.post('/admin/:id', upload.array('image'), urlencodedParser, async(req, res) 
         if (req.files.length > 0) {
             const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
             post.images.push(...imgs);
+        }
+        let v = 1;
+
+        let temp = "itiniery";
+        temp.concat();
+        post.itiniery = [];
+
+        while (req.body["itiniery".concat(v.toString())] != null) {
+            post.itiniery.push(req.body["itiniery".concat(v.toString())]);
+            v++;
         }
         await post.save();
         let posts = await Post.find({});
