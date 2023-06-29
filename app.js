@@ -131,7 +131,7 @@ app.get('/delete/:id', protected, async(req, res) => {
         let calls = await Call.find({});
         let callme = await Calls.find({});
 
-        res.render('index.ejs', { posts, calls, callme });
+        res.redirect('/admin');
     } catch (error) {
         console.log(error);
     }
@@ -292,7 +292,7 @@ app.post('/admin', protected, upload.array('image'), urlencodedParser, async(req
         let calls = await Call.find({});
         let callme = await Calls.find({});
 
-        res.render('index.ejs', { posts, calls, callme });
+        res.redirect('/admin');
     } catch (error) {
         console.log(error);
     }
@@ -323,7 +323,7 @@ app.post('/admin/:id', protected, upload.array('image'), urlencodedParser, async
         let calls = await Call.find({});
         let callme = await Calls.find({});
 
-        return res.render('index.ejs', { posts, calls, callme });
+        return res.redirect('/admin');
     } catch (error) {
         console.log(error);
     }
