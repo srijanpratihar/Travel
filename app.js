@@ -38,6 +38,15 @@ db.once("open", () => {
     console.log("Database connected");
 });
 
+const protected = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        let flag = false;
+        res.render('home.ejs', { posts, flag, success: 'mustbeloggedin' });
+    }
+}
+
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     secret: 'keyboard cat',
@@ -65,7 +74,7 @@ app.get('/', async(req, res) => {
     }
 
 })
-app.get('/admin', async(req, res) => {
+app.get('/admin', protected, async(req, res) => {
     try {
         if (req.isAuthenticated()) {
             let posts = await Post.find({});
@@ -103,7 +112,7 @@ app.get('/register', (req, res) => {
 })
 
 
-app.get('/delete/:id', async(req, res) => {
+app.get('/delete/:id', protected, async(req, res) => {
     try {
         let id = req.params.id;
         let callfind = await Calls.findById(id);
@@ -202,7 +211,7 @@ app.get('/logout', (req, res) => {
 })
 
 
-app.get('/edit/:id', async(req, res) => {
+app.get('/edit/:id', protected, async(req, res) => {
     try {
         let id = req.params.id;
         let posts = await Post.findById(id);
@@ -213,7 +222,7 @@ app.get('/edit/:id', async(req, res) => {
 
 })
 
-app.get('/addpost', async(req, res) => {
+app.get('/addpost', protected, async(req, res) => {
     try {
         if (req.isAuthenticated()) {
             res.render('add.ejs');
@@ -232,7 +241,7 @@ app.get('/addpost', async(req, res) => {
     }
 })
 
-app.post('/admin', upload.array('image'), urlencodedParser, async(req, res) => {
+app.post('/admin', protected, upload.array('image'), urlencodedParser, async(req, res) => {
     try {
 
 
@@ -290,7 +299,7 @@ app.post('/admin', upload.array('image'), urlencodedParser, async(req, res) => {
     }
 })
 
-app.post('/admin/:id', upload.array('image'), urlencodedParser, async(req, res) => {
+app.post('/admin/:id', protected, upload.array('image'), urlencodedParser, async(req, res) => {
     console.log(req.body);
     try {
 
@@ -333,7 +342,7 @@ app.post('/contact', urlencodedParser, async(req, res) => {
     }
 })
 
-app.get('/:id/enquiry', async(req, res) => {
+app.get('/:id/enquiry', protected, async(req, res) => {
     try {
         let msg = await Call.findById(req.params.id);
         res.render('enquiry.ejs', { msg });
