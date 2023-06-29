@@ -42,8 +42,7 @@ const protected = (req, res, next) => {
     if (req.isAuthenticated()) {
         next();
     } else {
-        let flag = false;
-        res.render('home.ejs', { posts, flag, success: 'mustbeloggedin' });
+        res.render('notAuthorize.ejs');
     }
 }
 
