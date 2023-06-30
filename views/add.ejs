@@ -58,33 +58,30 @@
                     let v = 2;
 
                     function addmore() {
+                        var d = document.createElement("div"); //create div tag
+                        d.setAttribute("class", "mb-3"); //set attibutes of div
+
+                        var l = document.createElement("label"); //set label
+                        l.setAttribute("class", "form-label"); //set attributes for label
+                        l.setAttribute("for", "description"); //set attibutes for label
+                        let temp = "Day";                             //--.
+                        let temp2 = v.toString();                     //  .
+                        l.innerText = temp.concat(" " + temp2);       //  . ---> text inside label tag
+                                                                      //  .  
+                        let r = "itiniery".concat(temp2);             //--.
 
 
-                        var d = document.createElement("div");
-                        d.setAttribute("class", "mb-3");
+                        var text = document.createElement("textarea"); //  |
+                        text.setAttribute("class", "form-control");    //  |
+                        text.setAttribute("type", "text");             //  |-->create text area tag and add attributes
+                        text.setAttribute("name", r);                  //  |
 
+                        d.appendChild(l);//      ->append label and text area tags under div
+                        d.appendChild(text);//   |
 
-                        var l = document.createElement("label");
-                        l.setAttribute("class", "form-label");
-                        l.setAttribute("for", "description");
-                        let temp = "Day";
-                        let temp2 = v.toString();
-                        l.innerText = temp.concat(" " + temp2);
+                        document.getElementById('fg').append(d);// add another section dynamically to add more days for travel itiniery.
 
-                        let r = "itiniery".concat(temp2);
-
-
-                        var text = document.createElement("textarea");
-                        text.setAttribute("class", "form-control");
-                        text.setAttribute("type", "text");
-                        text.setAttribute("name", r);
-
-                        d.appendChild(l);
-                        d.appendChild(text);
-
-                        document.getElementById('fg').append(d);
-
-                        v++;
+                        v++;//increase the value of day to 3 incase the admin clicks "add another day" again.
                     }
                 </script>
 
