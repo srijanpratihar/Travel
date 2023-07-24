@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/b2eeb7bc31.js" crossorigin="anonymous"></script>
+
+    <title>Registration Page</title>
+</head>
+
+<body style="background-image:url('/images/WhatsApp Image 2023-02-20 at 20.48.32.jpeg');;background-size: 100% 200%;">
+    <header class="header-area">
+        <div class="container">
+            <div class="header">
+                <a href="" class="logo" style="color: rgb(103, 80, 229);">India Tourism</a>
+                <ul>
+                    <li><a href="/" style="text-decoration: none;color: rgb(103, 80, 229);">Home</a></li>
+                    <li><a href="/aboutus" style="text-decoration: none;color: rgb(103, 80, 229);">About Us</a></li>
+                    <li><a href="/contactus" style="text-decoration: none;color: rgb(103, 80, 229);">Contact Us</a></li>
+
+                    <li><a href="/login" style="text-decoration: none;color: rgb(103, 80, 229);">Admin Login</a></li>
+                    <li><a href="/register" style="text-decoration: none;color: rgb(103, 80, 229);">Admin Register</a></li>
+
+                </ul>
+                <span class="menu-icon">
+                    <i class='bx bx-menu' ></i>
+                </span>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class=" container mt-5 pt-5 ">
+            <div class="row ">
+                <% if(success=='username'){%>
+                    <div class="alert alert-success">
+
+                        <strong>Username is already Taken!</strong>
+
+                    </div>
+                    <%}%>
+
+                        <% if(success=='password'){%>
+                            <div class="alert alert-success">
+
+                                <strong>Invalid Password</strong>
+
+                            </div>
+                            <%}%>
+
+                                <% if(success=='email'){%>
+                                    <div class="alert alert-success">
+
+                                        <strong>Email is already registered!</strong>
+
+                                    </div>
+                                    <%}%>
+
+
+
+                                        <div class="text-center">
+                                            <h1>Register</h1>
+                                        </div>
+                                        <div class="col-12 col-sm-7 col-md-6 m-auto ">
+                                            <div>
+                                                <div class="card-body ">
+                                                    <form action="/register" method="post">
+                                                        <input type="text " name="username" class="form-control my-4 py-2 " placeholder="Username" required>
+                                                        <input type="email" name="email" class="form-control my-4 py-2" placeholder="email" required>
+                                                        <input type="password " name="password" class="form-control my-4 py-2 " placeholder="Password" required>
+                                                        <div class="text-center mt-3">
+                                                            <button class="btn btn-warning" type="submit">Register</button>
+                                                            <div class="mt-2">Already Have an account?<a href="/login" class="text-black">Login Now</a></div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js " integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj " crossorigin="anonymous "></script>
+</body>
+
+</html>
